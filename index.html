@@ -1,0 +1,215 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/1a54d23b69.js" crossorigin="anonymous"></script>
+    <meta content="Free Money" name="keywords">
+    <meta content="Free Money" name="description">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Animation On Scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Time -->
+<script type = "text/JavaScript" src = "https://MomentJS.com/downloads/moment.js"></script>
+<!-- Alert Lib -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <link rel="stylesheet" href="dash.css">
+     <script src="dash.js"></script>
+     <script src="jquery.js"></script>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <script src="jquery-3.6.1.js"></script>
+    <style>
+      .up{Padding: 15px;
+        background: #fff; 
+        font-size: 33px;
+        margin-top: 0; }
+        
+        .upper{
+        display: block;
+        max-width: 80%;
+        border-radius:5px;
+        margin:auto;
+        padding: 10px;
+        background: #fff;
+        }
+        .upper input, .upper button{
+        border: none;
+         outline: none;
+         }
+         #myInput{background: #fff;}
+         .upper button{
+          padding: 5px;
+         }
+        .title{font-size: large;
+color:#FFF;
+        }
+hr{opacity: .3;
+margin:0;}
+  
+    .fa-gear{opacity: .5;}
+        .logout{
+        text-decoration: none;
+       background: #fff;
+       border-radius: 100%;
+       padding: 15px;
+       position: -webkit-sticky; /* Safari */
+       position: sticky;
+       bottom: 8px;
+        }
+        
+        
+    .transac_div{width:90%;
+                margin: auto;
+               }
+    
+     
+     #confirm_div{position: relative;
+                  top: -100%;
+                  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+                  }
+     #amount_r{padding: 10px;}
+    .prompt{text-align: center;
+    display: none; 
+    border-radius:5px; 
+    padding:10px;
+    background: #fff; 
+    max-width:80%; 
+    margin: auto;}
+    #amount{font-size:40px;}
+    
+    
+   .confirm_btn, .cancel_btn, .amount_t, .amount_r, #invoke_t{
+    background: #4CAF50;
+    color: white;
+    padding: 7px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    }
+    .cancel_btn{background: transparent;
+    border: 1px solid #f2f2f2;
+    color: black;}
+    .confirm_btn:hover{background: #45a049;}
+    #amount_r, #amount_t{
+    background: #fff;
+    outline: none;
+    text-align: center;
+    
+    }
+    #amount_t{
+    font-size:40px; 
+    outline: none; 
+    background: #fff;
+    color: black;
+     border: none;}
+     #amount_r{color: black;}
+     
+     @media screen and (min-width: 600px) {
+      
+     }
+    </style>
+    <title>Wallet</title>
+</head>
+<body>
+<div class="allmain" id="allmain">
+<br><br>
+<div class="top">
+    <div class="upper">
+<!-- The text field -->
+    <input type="text" id="myInput" disabled>
+    
+    <!-- The button used to copy the text -->
+    <button onclick="myFunction()">Click to copy</button>
+   </div>
+<br><br><br>
+  <div class=" txt-center">
+    <span id="bal" class="gren">
+    0.00SIM
+    </span> 
+    <br> <br>
+<span class="">My Balance</span>
+    <br><br>
+</div>
+<br>
+<br>
+</div>
+<div class="f2_btn_div">
+ <button class="btn_blue" id="topup">Deposit</button><button class="btn_green" id="transfer" onclick="window.location.assign('trans.php');">Withdraw</button>
+</div>
+<br>
+<br>
+<h3 class="m-4">Recent Tasks</h3>
+  <div class="block task-btn">
+
+      <button>
+      <i class="fa-solid fa-robot green"></i><br>
+      <br><small> <a href="../earn/index.html">click to earn</a></small></button>
+  </div>
+
+</div>
+
+<div class="footer">
+<button class="green" id="topup"><i class="fa-solid fa-wallet"></i><br> wallet</button>
+<button id="transfer" onclick="window.location.assign('trans.php');"><i class="fa-solid fa-money-bill-transfer"></i><br>transfer</button>
+<button id="topup" onclick="window.location.assign('history.php');"><i class="fa fa-history" aria-hidden="true"></i><br>history</button>
+<button id="transfer" onclick="logout()"><i class="fa fa-sign-out"></i><br>logout</button>
+</div>
+<script type="text/javascript">
+
+window.onload = function name(){
+ if(localStorage.balance != ""){
+ bl = localStorage.balance
+  document.getElementById("bal").innerHTML = bl+"SIM"
+ // bl.toFixed(2)
+ 
+ document.getElementById("myInput").value = localStorage.address
+// console.log(localStorage.balance)
+// console.log(localStorage.address)
+}
+else{
+window.location.assign('login.html');
+}
+}
+
+function logout(){
+localStorage.removeItem("balance")
+localStorage.removeItem("address")
+ alert("logout successfully!")
+ window.location.assign('login.html');
+}
+
+function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+  
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+  
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("Copied the private key: " + copyText.value);
+  }
+</script>
+<script src="jquery-3.6.1.js"></script>
+<script src="file.js"></script>
+<script src="js.js"></script>
+</body>
+</html>

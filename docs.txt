@@ -1,0 +1,26 @@
+
+
+
+Transfer
+
+making transaction files
+
+transac file
+
+this is php file, accessed from inside html file through Javascript.
+
+$.post("transac.php",
+	{
+	reciever : reciever,
+	amount : amount,
+	tx : tx,
+	pky : pkey
+	}
+
+tx is transaction hash, it's not the hash actually. The php file is responsible for hashing.
+
+It returns results, whether if the transaction is successful or not, so display it in ajax.
+
+.......
+
+

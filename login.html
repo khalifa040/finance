@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<script src="jquery-3.6.1.js"></script>
+<script src="https://kit.fontawesome.com/1a54d23b69.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<meta content="Free Money" name="keywords">
+    <meta content="Free Money" name="description">
+    <script src="jquery-3.6.1.js"></script>
+ <link rel="icon" type="image/x-icon" href="logo.png">
+ <link rel="stylesheet" href="gateway.css">
+    <title>Wallet</title>
+</head>
+<body>
+<span id="a"></span><br><br><br>
+   <div class="formdiv">
+<img src="login.png">
+<h3>ACCESS</h3>
+<hr>
+    <div>
+        
+<label>Enter your wallet private key</label><br>
+    <input type="text" name="" placeholder="Private Key" id="pkey"><br>
+    <button id="login">Access</button>
+   </div>
+   <br>doesn't have an wallet? <a href="signup.html">create wallet</a>
+   </div>
+
+  <script>
+  $(document).ready(function(){
+  
+  // alert(3);
+  $("#login").click(function(){
+  $("#login").html("<i class='fa fa-circle-o-notch fa-spin'></i>");
+  wkey = $("#pkey").val()
+  
+  
+  localStorage.setItem("wkey", wkey)
+ 
+  // send request usin privatekey
+  
+  $.post("schain/api_v1/login.php",
+  {
+  pkey : $("#pkey").val()
+  },
+  function(data,status){
+  
+  $("#login").html("login");
+  
+  // handle the response
+  
+  // handle amount and public key
+  
+  // convert response to object
+  var data = JSON.parse(data);
+  $("#a").html(data)
+/*  if(data.address = "0"){
+     $("#a").html(data.balance)
+    }
+  else if(data.address = "1"){
+   $("#a").html(data.balance)
+   }
+  else{
+  localStorage.setItem("address", data.address)
+  localStorage.setItem("balance", data.balance)
+  // asign them in localstorage and update private key in localstorage
+  // move to index page
+  window.location.assign('index.html');
+  }
+  */
+  }
+  )
+  });
+  });
+   </script>
+</body>
+</html>

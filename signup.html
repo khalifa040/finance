@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta content="Free Money" name="keywords">
+ <meta content="Free Money" name="description">
+ <link rel="icon" type="image/x-icon" href="logo.png">
+ <link rel="stylesheet" href="gateway.css">
+ <script src="../jquery-3.6.1.js"></script>
+    <title>Create Wallet</title>
+</head>
+<body>
+<br>
+    <div class="upper" id="upper">
+    <span class="green">Your Wallet Key</span>
+    <br>
+    
+   
+    <!-- The text field -->
+    <input type="text" id="myInput">
+    
+    <!-- The button used to copy the text -->
+    <button onclick="myFunction()">Copy Private Key</button>
+    </div>
+    <br><br>
+    <div class="tooltip"><span class="tooltiptext"></span></div>
+   <div class="formdiv" id="cwdiv">
+    <img src="login.png">
+    <h3>Create Wallet</h3>
+    <hr>
+    <button id="create">Create Wallet</button>
+   </form>
+   <br>have a wallet? <a href="login.html">access.</a>
+   </div>
+  <script type="text/javascript">
+  $(document).ready(function(){
+  
+  
+  $("#create").click(function(){
+  
+  ran = Math.floor(Math.random() * 103333893330) + 100093;
+  ran1 = ran+Math.random()
+  seed = ran.toString(16);
+  $("#create").html("<i class='fa fa-circle-o-notch fa-spin'></i>");
+  $.post("schain/api_v1/createwallet.php",
+  {
+  seed : seed
+  },
+  function(data,status){
+  tx = "Your wallet key is: <br>"
+  $("#myInput").val(data);
+  $("#upper").css("display","block")
+  $("#cwdiv").css("display","none")
+  // alert(data+" "+status)
+  $("#login").html("Create Wallet");
+  }
+  )
+  });
+  
+  
+  
+  });
+  
+  function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+  
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+  
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("Copied the private key: " + copyText.value);
+  }
+  </script>
+</body>
+</html>
